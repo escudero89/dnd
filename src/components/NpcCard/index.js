@@ -5,6 +5,8 @@ import lockr from 'lockr';
 import { Card, Icon } from 'antd/lib';
 import BasicInfo from './BasicInfo';
 import Flavor from './Flavor';
+import Stats from './Stats';
+import Notes from './Notes';
 
 const getColorFromRole = role => {
   switch (role) {
@@ -34,6 +36,10 @@ class NpcCard extends React.Component {
         return <BasicInfo {...this.props} />;
       case 'flavor':
         return <Flavor {...this.props} />;
+      case 'stats':
+        return <Stats {...this.props} />;
+      case 'notes':
+        return <Notes {...this.props} />;
       default:
         return null;
     }
@@ -46,30 +52,22 @@ class NpcCard extends React.Component {
     });
   }
 
-  getIcon(view, icon) {
-    return (
-      <Icon
-        type={icon}
-        style={this.state.view === view ? { color: '#1890ff' } : {}}
-        onClick={this.setView.bind(this, view)}
-      />
-    );
-  }
-
   render() {
     const { name, portrait, role } = this.props;
-
     const isBasic = this.state.view === 'basic';
 
     return (
       <Card
         cover={isBasic && portrait && <img alt="example" src={portrait} />}
         title={name}
-        actions={[
-          this.getIcon('basic', 'info-circle'),
-          this.getIcon('flavor', 'smile-o'),
-          this.getIcon('stats', 'ellipsis')
+        tabList={[
+          { key: 'basic', tab: <Icon type="info-circle-o" /> },
+          { key: 'flavor', tab: <Icon type="smile-o" /> },
+          { key: 'stats', tab: <Icon type="dot-chart" /> },
+          { key: 'notes', tab: <Icon type="ellipsis" /> }
         ]}
+        activeTabKey={this.state.view}
+        onTabChange={key => this.setView(key)}
         style={{ borderColor: getColorFromRole(role) }}
       >
         {this.getView()}

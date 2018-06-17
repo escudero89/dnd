@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BasicInfo = ({ flavor }) => (
+const Flavor = ({ flavor }) => (
   <div>
     {Object.keys(flavor).map(key => {
       return (
@@ -12,4 +12,4 @@ const BasicInfo = ({ flavor }) => (
   </div>
 );
 
-export default BasicInfo;
+export default Flavor;
