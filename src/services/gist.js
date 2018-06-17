@@ -1,18 +1,25 @@
 import Gists from 'gists';
-import token from '../config/token';
+import config from '../config/gist';
 
 class GistService {
   constructor() {
     this.gists = new Gists({
-      token: token
+      token: config.token
     });
 
-    this.id = '16bbb227af56db82f263464dde8e852b';
+    this.id = config.id;
   }
 
   download() {
-    this.gists.download({ id: this.id }, (err, res) => {
-      console.log(res);
+    return new Promise((resolve, reject) => {
+      this.gists.download({ id: this.id }, (err, res) => {
+        if (err) {
+          return reject(err);
+        }
+
+        console.log(res);
+        return resolve(res);
+      });
     });
   }
 }
