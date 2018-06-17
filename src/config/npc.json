@@ -9,5 +9,38 @@
     "flavor": {
       "description": "Lorem ipsum"
     }
+  },
+  {
+    "name": "Marcos",
+    "portrait": null,
+    "stats": {
+      "alignment": "LN",
+      "cr": 5
+    },
+    "flavor": {
+      "description": "Lorem ipsum"
+    }
+  },
+  {
+    "name": "Test",
+    "portrait": null,
+    "stats": {
+      "alignment": "LN",
+      "cr": 5
+    },
+    "flavor": {
+      "description": "Lorem ipsum"
+    }
+  },
+  {
+    "name": "Test",
+    "portrait": null,
+    "stats": {
+      "alignment": "LN",
+      "cr": 5
+    },
+    "flavor": {
+      "description": "Lorem ipsum"
+    }
   }
 ]
