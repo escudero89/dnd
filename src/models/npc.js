@@ -37,7 +37,7 @@ class Npc {
     return this.properties[property];
   }
 
-  toString() {
+  write() {
     const {
       role,
       name,
@@ -59,14 +59,16 @@ class Npc {
 
     return `
 # ${role}: ${name} (${alignment}), CR ${cr}
+
 ${printQuote()}
+
 ${portrait ? portrait : ''}
 
-## Description
+## Description
 
 ${description}
 
-## Flavor
+## Flavor
 
 ${printFlavor()}
 

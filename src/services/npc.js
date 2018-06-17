@@ -5,7 +5,7 @@ const RX_BASIC_INFO = /^# ([\w]+): ([\w\s]+) \(([A-Z]+)\), CR ([\d]+)$/m;
 const RX_QUOTE = /^_(.*)_$/m;
 const RX_PORTRAIT = /^(http(s)?:\/\/.+)$/m;
 
-const RX_FLAVOR = /^([A-Z]+): (.+)$/gm;
+const RX_FLAVOR = /^([A-Z\s]+): (.+)$/gm;
 
 class NpcService {
   constructor() {

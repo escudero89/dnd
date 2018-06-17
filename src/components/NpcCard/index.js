@@ -22,24 +22,30 @@ const getColorFromRole = role => {
 class NpcCard extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(props.uploadNpcList);
     const id = props.name;
     this.state = {
       id,
-      view: (lockr.get('view') || {})[id] || 'basic'
+      view: (lockr.get('view') || {})[id] || 'basic',
+      properties: props.npc.properties
     };
   }
 
   getView() {
     switch (this.state.view) {
       case 'basic':
-        return <BasicInfo {...this.props} />;
+        return <BasicInfo {...this.state.properties} />;
       case 'flavor':
-        return <Flavor {...this.props} />;
+        return <Flavor {...this.state.properties} />;
       case 'stats':
-        return <Stats {...this.props} />;
+        return <Stats {...this.state.properties} />;
       case 'notes':
-        return <Notes {...this.props} />;
+        return (
+          <Notes
+            {...this.state.properties}
+            uploadNpcList={this.props.uploadNpcList}
+          />
+        );
       default:
         return null;
     }
@@ -53,7 +59,7 @@ class NpcCard extends React.Component {
   }
 
   render() {
-    const { name, portrait, role } = this.props;
+    const { name, portrait, role } = this.state.properties;
     const isBasic = this.state.view === 'basic';
 
     return (

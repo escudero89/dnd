@@ -3,9 +3,9 @@ import { Col, Row } from 'antd/lib';
 
 import NpcCard from '../NpcCard';
 
-const getCols = options => {
+const getCols = (npcList, uploadNpcList) => {
   const cols = [];
-  options.forEach((npc, idx) => {
+  npcList.forEach((npc, idx) => {
     cols.push(
       <Col
         key={`col-${idx}`}
@@ -13,15 +13,15 @@ const getCols = options => {
         sm={{ span: 12 }}
         md={{ span: 8 }}
       >
-        <NpcCard {...npc.properties} />
+        <NpcCard npc={npc} uploadNpcList={uploadNpcList} />
       </Col>
     );
   });
   return cols;
 };
 
-const Grid = ({ npcList = [] }) => {
-  return <Row gutter={8}>{getCols(npcList)}</Row>;
+const Grid = ({ npcList = [], uploadNpcList }) => {
+  return <Row gutter={8}>{getCols(npcList, uploadNpcList)}</Row>;
 };
 
 export default Grid;

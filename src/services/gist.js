@@ -22,6 +22,38 @@ class GistService {
       });
     });
   }
+
+  upload(content) {
+    return new Promise((resolve, reject) => {
+      this.gists.edit(
+        {
+          id: this.id,
+          files: {
+            [config.filename]: {
+              content: content
+            }
+          }
+        },
+        (err, res) => {
+          if (err) {
+            return reject(err);
+          }
+
+          console.log(res);
+          return resolve(res);
+        }
+      );
+    });
+  }
+
+  uploadNpcList(npcList) {
+    const content = [];
+    npcList.forEach(npc => {
+      content.push(npc.write());
+    });
+
+    this.upload(content.join('\n---\n'));
+  }
 }
 
 export default GistService;
