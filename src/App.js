@@ -26,6 +26,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header>
+          taken from &nbsp;<a
+            href="https://gist.github.com/escudero89/16bbb227af56db82f263464dde8e852b"
+            target="_blank"
+            rel="noreferrer"
+          >
+            gist
+          </a>
+        </header>
         <Grid npcList={this.state.npcList} />
       </div>
     );
