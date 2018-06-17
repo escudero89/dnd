@@ -8,9 +8,9 @@ const CARDS_PER_ROW = 3;
 
 const getCols = options => {
   const cols = [];
-  options.forEach(option => {
+  options.forEach((option, idx) => {
     cols.push(
-      <Col span={8}>
+      <Col key={`col-${idx}`} span={8}>
         <NpcCard {...option} />
       </Col>
     );
@@ -24,7 +24,7 @@ const Grid = () => {
 
   for (let i = 0; i < rowsMaxQty; i++) {
     rows.push(
-      <Row gutter={8}>
+      <Row key={`row-${i}`} gutter={8}>
         {getCols(npc.slice(i * CARDS_PER_ROW, (i + 1) * CARDS_PER_ROW))}
       </Row>
     );
