@@ -7,7 +7,7 @@ const NpcCard = props => (
     cover={props.portrait && <img alt="example" src={props.portrait} />}
     title={props.name}
   >
-    <p>{props.flavor.description}</p>
+    <p>{props.description}</p>
   </Card>
 );
 
