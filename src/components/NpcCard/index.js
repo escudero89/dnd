@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { Card, Icon, Tag } from 'antd/lib';
+import lockr from 'lockr';
+
+import { Card, Icon } from 'antd/lib';
+import BasicInfo from './BasicInfo';
+import Flavor from './Flavor';
 
 const getColorFromRole = role => {
   switch (role) {
@@ -13,46 +17,65 @@ const getColorFromRole = role => {
   }
 };
 
-const getColorFromAlignment = alignment => {
-  if (alignment.indexOf('B') !== -1) {
-    return 'blue';
+class NpcCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const id = props.name;
+    this.state = {
+      id,
+      view: (lockr.get('view') || {})[id] || 'basic'
+    };
   }
 
-  if (alignment.indexOf('M') !== -1) {
-    return 'volcano';
+  getView() {
+    switch (this.state.view) {
+      case 'basic':
+        return <BasicInfo {...this.props} />;
+      case 'flavor':
+        return <Flavor {...this.props} />;
+      default:
+        return null;
+    }
   }
-};
 
-const NpcCard = ({
-  name,
-  portrait,
-  quote,
-  description,
-  role,
-  alignment,
-  cr
-}) => (
-  <Card
-    cover={portrait && <img alt="example" src={portrait} />}
-    title={name}
-    actions={[
-      <Icon type="setting" />,
-      <Icon type="edit" />,
-      <Icon type="ellipsis" />
-    ]}
-    style={{ borderColor: getColorFromRole(role) }}
-  >
-    <div>
-      <p>{quote}</p>
-      <p>
-        <small>{description}</small>
-      </p>
-    </div>
-    <div>
-      <Tag color={getColorFromAlignment(alignment)}>{alignment}</Tag>
-      <Tag>CR {cr}</Tag>
-    </div>
-  </Card>
-);
+  setView(view) {
+    this.setState({ view });
+    lockr.set('view', {
+      [this.state.id]: view
+    });
+  }
+
+  getIcon(view, icon) {
+    return (
+      <Icon
+        type={icon}
+        style={this.state.view === view ? { color: '#1890ff' } : {}}
+        onClick={this.setView.bind(this, view)}
+      />
+    );
+  }
+
+  render() {
+    const { name, portrait, role } = this.props;
+
+    const isBasic = this.state.view === 'basic';
+
+    return (
+      <Card
+        cover={isBasic && portrait && <img alt="example" src={portrait} />}
+        title={name}
+        actions={[
+          this.getIcon('basic', 'info-circle'),
+          this.getIcon('flavor', 'smile-o'),
+          this.getIcon('stats', 'ellipsis')
+        ]}
+        style={{ borderColor: getColorFromRole(role) }}
+      >
+        {this.getView()}
+      </Card>
+    );
+  }
+}
 
 export default NpcCard;

@@ -12,7 +12,6 @@ const getCols = options => {
         xs={{ span: 24 }}
         sm={{ span: 12 }}
         md={{ span: 8 }}
-        lg={{ span: 6 }}
       >
         <NpcCard {...npc.properties} />
       </Col>
