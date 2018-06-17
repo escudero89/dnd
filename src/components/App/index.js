@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 
-import 'antd/dist/antd.css';
-import './App.css';
-
-import GistService from './services/gist';
-import ParserService from './services/parser';
-import Grid from './components/Grid';
+import GistService from '../../services/gist';
+import ParserService from '../../services/parser';
+import Grid from '../Grid';
 
 class App extends Component {
   constructor() {
@@ -14,6 +11,7 @@ class App extends Component {
       npcList: []
     };
   }
+
   componentDidMount() {
     const gist = new GistService();
     gist.download().then(data => {
@@ -26,15 +24,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          taken from &nbsp;<a
-            href="https://gist.github.com/escudero89/16bbb227af56db82f263464dde8e852b"
-            target="_blank"
-            rel="noreferrer"
-          >
-            gist
-          </a>
-        </header>
         <Grid npcList={this.state.npcList} />
       </div>
     );
