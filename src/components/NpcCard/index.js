@@ -22,8 +22,7 @@ const getColorFromRole = role => {
 class NpcCard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.uploadNpcList);
-    const id = props.name;
+    const id = props.npc.properties.name;
     this.state = {
       id,
       view: (lockr.get('view') || {})[id] || 'basic',
