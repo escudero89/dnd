@@ -12,6 +12,7 @@ const getCols = (npcList, uploadNpcList) => {
         xs={{ span: 24 }}
         sm={{ span: 12 }}
         md={{ span: 8 }}
+        lg={{ span: 6 }}
       >
         <NpcCard npc={npc} uploadNpcList={uploadNpcList} />
       </Col>

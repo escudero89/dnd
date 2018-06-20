@@ -16,7 +16,11 @@ const BasicInfo = ({ quote, description, alignment, cr }) => (
     <div>
       <p>{quote}</p>
       <p>
-        <small>{description}</small>
+        <small>
+          {description
+            .split('\n\n')
+            .map((sentence, idx) => <p key={idx}>{sentence}</p>)}
+        </small>
       </p>
     </div>
     <div>
