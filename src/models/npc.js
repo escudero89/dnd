@@ -1,15 +1,18 @@
 class Npc {
   schema = {
-    role: 'string',
     name: 'string',
+
+    age: 'number',
     alignment: 'string',
     cr: 'number',
+    role: 'string',
 
     quote: 'string',
     portrait: 'string',
 
     description: 'string',
     flavor: 'object',
+    appearance: 'string',
 
     stats: 'string',
     notes: 'string'

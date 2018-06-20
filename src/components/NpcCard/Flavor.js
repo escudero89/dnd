@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tooltip } from 'antd';
 
-import motivators from '../../config/motivators';
-import temperaments from '../../config/temperaments';
+import motivators from '../../data/motivators';
+import temperaments from '../../data/temperaments';
 
 const tooltipHint = content => (
   <span style={{ cursor: 'pointer', color: '#1890ff' }}>{content}</span>

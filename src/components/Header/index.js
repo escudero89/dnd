@@ -1,7 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Button, message } from 'antd';
+import gestures from '../../data/gestures';
+
 import './header.css';
+
+const gesture = () => {
+  const random = Math.floor((Math.random() * 10e9) % gestures.length);
+  message.success(<span>{gestures[random]}</span>, 5);
+};
 
 const Header = () => (
   <header>
@@ -12,18 +20,20 @@ const Header = () => (
         </NavLink>
       </li>
       <li>
-        <NavLink activeClassName="link--active" to="/about">
+        <NavLink activeClassName="link--active" to="/secondary">
           Secondary
-        </NavLink>
-      </li>
-      <li>
-        <NavLink activeClassName="link--active" to="/topics">
-          Topics
         </NavLink>
       </li>
     </ul>
     <div className="right">
-      taken from &nbsp;<a
+      <Button
+        type="default"
+        icon="message"
+        size="small"
+        title="Gesture"
+        onClick={gesture}
+      />
+      &nbsp; | taken from &nbsp;<a
         href="https://gist.github.com/escudero89/16bbb227af56db82f263464dde8e852b"
         target="_blank"
         rel="noopener noreferrer"

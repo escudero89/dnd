@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { GistService, ParserService } from '../../services';
-import { Header, Grid } from '../../components';
+import { Grid, Header, NpcList } from '../../components';
 
 import gistConfig from '../../config/gist';
 
@@ -28,14 +28,19 @@ class App extends React.Component {
   }
 
   render() {
-    const Grido = () => (
+    const Primary = () => (
       <Grid
         npcList={this.state.npcList}
         uploadNpcList={() => this.gist.uploadNpcList(this.state.npcList)}
       />
     );
 
-    const A = () => null;
+    const Secondary = () => (
+      <NpcList
+        npcList={this.state.npcList}
+        uploadNpcList={() => this.gist.uploadNpcList(this.state.npcList)}
+      />
+    );
 
     return (
       <Router>
@@ -43,9 +48,8 @@ class App extends React.Component {
           <Header />
           <Layout.Content style={{ padding: '8px' }}>
             <div className="App">
-              <Route exact path="/" component={Grido} />
-              <Route path="/about" component={A} />
-              <Route path="/topics" component={A} />
+              <Route exact path="/" component={Primary} />
+              <Route path="/secondary" component={Secondary} />
             </div>
           </Layout.Content>
         </Layout>
