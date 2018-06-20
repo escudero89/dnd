@@ -15,13 +15,11 @@ const BasicInfo = ({ quote, description, alignment, cr }) => (
   <div>
     <div>
       <p>{quote}</p>
-      <p>
-        <small>
-          {description
-            .split('\n\n')
-            .map((sentence, idx) => <p key={idx}>{sentence}</p>)}
-        </small>
-      </p>
+      <small>
+        {description
+          .split('\n\n')
+          .map((sentence, idx) => <p key={idx}>{sentence}</p>)}
+      </small>
     </div>
     <div>
       <Tag color={getColorFromAlignment(alignment)}>{alignment}</Tag>

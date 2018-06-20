@@ -8,12 +8,12 @@ import './header.css';
 
 const gesture = () => {
   const random = Math.floor((Math.random() * 10e9) % gestures.length);
-  message.success(<span>{gestures[random]}</span>, 5);
+  message.success(gestures[random], 5);
 };
 
 const Header = () => (
   <header>
-    <ul class="link-list">
+    <ul className="link-list">
       <li>
         <NavLink exact activeClassName="link--active" to="/">
           Primary
