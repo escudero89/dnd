@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { GistService, ParserService } from '../../services';
-import Header from '../Header';
-import Grid from '../Grid';
+import { Header, Grid } from '../../components';
 
 import gistConfig from '../../config/gist';
 
