@@ -1,13 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { GistService, ParserService } from '../../services';
+import Header from '../Header';
 import Grid from '../Grid';
 
 import gistConfig from '../../config/gist';
-
-import './app.css';
 
 class App extends React.Component {
   constructor() {
@@ -42,34 +41,7 @@ class App extends React.Component {
     return (
       <Router>
         <Layout className="layout">
-          <header>
-            <ul class="link-list">
-              <li>
-                <NavLink exact activeClassName="link--active" to="/">
-                  Primary
-                </NavLink>
-              </li>
-              <li>
-                <NavLink activeClassName="link--active" to="/about">
-                  Secondary
-                </NavLink>
-              </li>
-              <li>
-                <NavLink activeClassName="link--active" to="/topics">
-                  Topics
-                </NavLink>
-              </li>
-            </ul>
-            <div className="right">
-              taken from &nbsp;<a
-                href="https://gist.github.com/escudero89/16bbb227af56db82f263464dde8e852b"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                gist
-              </a>
-            </div>
-          </header>
+          <Header />
           <Layout.Content style={{ padding: '8px' }}>
             <div className="App">
               <Route exact path="/" component={Grido} />
