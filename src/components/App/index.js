@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { FirebaseService, GistService, ParserService } from '../../services';
-import { Grid, Header, NpcList } from '../../components';
+import { Dices, Grid, Header, NpcList } from '../../components';
 
 import gistConfig from '../../config/gist';
 
@@ -46,8 +46,6 @@ class App extends React.Component {
         }
       />
     );
-
-    const Dices = () => <div />;
 
     return (
       <Router>
