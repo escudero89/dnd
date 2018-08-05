@@ -29,7 +29,7 @@ class GistService {
         {
           id: this.id,
           files: {
-            [config.filename]: {
+            [config.filename_primary]: {
               content: content
             }
           }
@@ -51,8 +51,8 @@ class GistService {
     npcList.forEach(npc => {
       content.push(npc.write());
     });
-
-    this.upload(content.join('\n---\n'));
+    // do nothing for now
+    // this.upload(content.join('\n---\n'));
   }
 }
 

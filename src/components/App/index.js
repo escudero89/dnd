@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
-import { GistService, ParserService } from '../../services';
+import { FirebaseService, GistService, ParserService } from '../../services';
 import { Grid, Header, NpcList } from '../../components';
 
 import gistConfig from '../../config/gist';
@@ -21,7 +21,10 @@ class App extends React.Component {
     this.gist.download().then(data => {
       this.setState({
         npcList: ParserService.parseToNpcList(
-          data.files[gistConfig.filename].content
+          data.files[gistConfig.filename_primary].content
+        ),
+        npcSecondaryList: ParserService.parseToNpcList(
+          data.files[gistConfig.filename_primary].content
         )
       });
     });
@@ -38,9 +41,13 @@ class App extends React.Component {
     const Secondary = () => (
       <NpcList
         npcList={this.state.npcList}
-        uploadNpcList={() => this.gist.uploadNpcList(this.state.npcList)}
+        uploadNpcList={() =>
+          this.gist.uploadNpcList(this.state.npcSecondaryList)
+        }
       />
     );
+
+    const Dices = () => <div />;
 
     return (
       <Router>
@@ -50,6 +57,7 @@ class App extends React.Component {
             <div className="App">
               <Route exact path="/" component={Primary} />
               <Route path="/secondary" component={Secondary} />
+              <Route path="/dices" component={Dices} />
             </div>
           </Layout.Content>
         </Layout>

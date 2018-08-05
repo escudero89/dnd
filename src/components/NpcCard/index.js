@@ -53,6 +53,7 @@ class NpcCard extends React.Component {
   setView(view) {
     this.setState({ view });
     lockr.set('view', {
+      ...(lockr.get('view') || {}),
       [this.state.id]: view
     });
   }

@@ -24,6 +24,11 @@ const Header = () => (
           Secondary
         </NavLink>
       </li>
+      <li>
+        <NavLink activeClassName="link--active" to="/dices">
+          Dices
+        </NavLink>
+      </li>
     </ul>
     <div className="right">
       <Button

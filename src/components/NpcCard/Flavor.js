@@ -9,7 +9,7 @@ const tooltipHint = content => (
 );
 
 const addBehavior = (key, value) => {
-  const cleanValue = value.toLowerCase().substr(0, value.length - 2);
+  const cleanValue = value.toLowerCase().replace(/[.\s]/g, '');
   if (key === 'MOTIVADOR') {
     const motivator = motivators[cleanValue];
     if (motivator) {
@@ -19,9 +19,7 @@ const addBehavior = (key, value) => {
         </Tooltip>
       );
     }
-  }
-
-  if (key === 'TEMPERAMENTO') {
+  } else if (key === 'TEMPERAMENTO') {
     const temperament = temperaments[cleanValue];
     if (temperament) {
       return (
